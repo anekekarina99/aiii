@@ -1,0 +1,153 @@
+Tentu! Berikut adalah **README.md** yang bisa Anda gunakan untuk dokumentasi aplikasi tersebut. Panduan ini akan membantu pengguna lain untuk mengonfigurasi dan menjalankan aplikasi dengan mudah.
+
+---
+
+# Panduan Penggunaan Aplikasi Watermark Gambar dengan Stable Diffusion
+
+Aplikasi ini menggunakan **Stable Diffusion** untuk menghasilkan gambar otomatis dari prompt yang diberikan, kemudian menambahkan watermark pada gambar tersebut. Aplikasi ini menggunakan **Streamlit** untuk menampilkan hasilnya di web dan juga memungkinkan Anda untuk mengunduh gambar yang dihasilkan beserta gambar yang telah diberi watermark dalam bentuk file ZIP.
+
+## Fitur Utama
+- Menghasilkan gambar menggunakan **Stable Diffusion** dari prompt yang diberikan.
+- Menambahkan **watermark** ke gambar yang dihasilkan.
+- Menampilkan gambar yang telah diolah di aplikasi web menggunakan **Streamlit**.
+- Membuat file ZIP berisi gambar yang dihasilkan, gambar yang diberi watermark, dan skrip aplikasi.
+
+---
+
+## 1. Persiapan
+
+Sebelum menjalankan aplikasi, pastikan Anda telah melakukan langkah-langkah berikut:
+
+### 1.1 Mendapatkan API Key dari Stable Diffusion
+
+Untuk menghasilkan gambar menggunakan **Stable Diffusion**, Anda memerlukan **API key** dari penyedia layanan Stable Diffusion. Anda dapat mendaftar dan mendapatkan API key dari [Stable Diffusion API](https://stablediffusionapi.com/).
+
+Setelah Anda mendapatkan API key, buka file `app.py` dan masukkan API key Anda di baris berikut:
+
+```python
+api_key = "your_stable_diffusion_api_key"  # Ganti dengan API key Stable Diffusion Anda
+```
+
+### 1.2 Siapkan Gambar Watermark
+
+Anda perlu menyiapkan gambar **watermark** yang akan ditambahkan pada gambar yang dihasilkan. Pastikan file gambar watermark tersedia di direktori yang sama dengan `app.py`. Gantilah nama file watermark pada baris berikut di `app.py`:
+
+```python
+watermark_path = "twibbon_logo.png"  # Ganti dengan path gambar watermark Anda
+```
+
+Jika Anda tidak memiliki gambar watermark, Anda dapat mengunduhnya dari berbagai sumber seperti [Twibbon](https://www.twibbon.com/) atau membuatnya sendiri.
+
+---
+
+## 2. Instalasi
+
+### 2.1 Menginstal Dependensi
+
+Aplikasi ini membutuhkan beberapa dependensi yang perlu diinstal. Anda dapat menginstalnya menggunakan `pip` dengan cara berikut:
+
+1. Buat file bernama `requirements.txt` dengan isi berikut:
+
+    ```txt
+    requests
+    Pillow
+    streamlit
+    ```
+
+2. Instal dependensi dengan perintah berikut:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+---
+
+## 3. Menjalankan Aplikasi
+
+### 3.1 Menjalankan Aplikasi dengan Streamlit
+
+Setelah semua pengaturan selesai, Anda dapat menjalankan aplikasi menggunakan **Streamlit** untuk menampilkan gambar yang dihasilkan dan diberi watermark.
+
+1. Pastikan Anda berada di direktori yang sama dengan file `app.py`.
+2. Jalankan aplikasi dengan perintah berikut di terminal:
+
+    ```bash
+    streamlit run app.py
+    ```
+
+Aplikasi akan memulai server Streamlit dan membuka halaman web di browser Anda yang menampilkan gambar yang telah diproses.
+
+### 3.2 Alur Aplikasi
+
+Setelah aplikasi dijalankan, berikut adalah langkah-langkah yang dilakukan oleh aplikasi:
+
+1. **Menghasilkan Gambar**: Aplikasi akan menggunakan **Stable Diffusion** untuk menghasilkan gambar berdasarkan prompt yang telah Anda tentukan di `app.py` (contoh prompt: "A modern leather suitcase on a clean white background").
+   
+2. **Menambahkan Watermark**: Aplikasi akan menambahkan watermark yang telah Anda siapkan pada gambar yang dihasilkan.
+
+3. **Membuat ZIP**: Aplikasi akan membuat file ZIP (`image_package.zip`) yang berisi:
+   - Gambar yang dihasilkan: `generated_image.png`
+   - Gambar yang telah diberi watermark: `watermarked_image.png`
+   - Skrip aplikasi: `app.py`
+
+4. **Menampilkan Gambar**: Gambar yang sudah diberi watermark akan ditampilkan di halaman Streamlit.
+
+---
+
+## 4. Mengunduh File ZIP
+
+Aplikasi akan menghasilkan file ZIP bernama `image_package.zip`. ZIP ini berisi:
+
+- **`generated_image.png`**: Gambar yang dihasilkan dari Stable Diffusion.
+- **`watermarked_image.png`**: Gambar yang sudah diberi watermark.
+- **`app.py`**: Skrip aplikasi yang dapat Anda gunakan atau bagikan.
+
+ZIP ini dapat digunakan untuk keperluan lebih lanjut, seperti mengunggah gambar ke platform e-commerce atau membagikan hasil gambar kepada orang lain.
+
+---
+
+## 5. Struktur Folder
+
+Setelah Anda menjalankan aplikasi, struktur folder proyek Anda akan terlihat seperti berikut:
+
+```bash
+project/
+├── app.py                    # Kode utama aplikasi
+├── generated_image.png       # Gambar yang dihasilkan dari Stable Diffusion
+├── watermarked_image.png     # Gambar yang sudah ditambahkan watermark
+├── twibbon_logo.png          # Gambar watermark (twibbon logo)
+├── requirements.txt          # Daftar dependensi
+└── image_package.zip         # File ZIP yang berisi gambar dan kode
+```
+
+---
+
+## 6. Troubleshooting
+
+### 6.1 Masalah API Key
+
+Jika Anda mendapatkan kesalahan terkait **API Key**:
+- Pastikan Anda sudah mendapatkan API key yang valid dari penyedia layanan Stable Diffusion.
+- Periksa apakah API key Anda sudah benar dan dimasukkan dengan tepat di dalam file `app.py`.
+
+### 6.2 Gambar Watermark Tidak Ditampilkan
+
+Jika watermark tidak muncul dengan baik:
+- Pastikan gambar watermark (`twibbon_logo.png`) berada di folder yang sama dengan file `app.py` atau pastikan path-nya sudah benar.
+- Periksa apakah file watermark dalam format yang didukung (PNG dengan transparansi lebih disarankan).
+
+---
+
+## 7. Kontribusi
+
+Jika Anda ingin berkontribusi atau memperbaiki aplikasi ini, Anda dapat melakukan fork repositori ini dan mengirimkan **pull request**. Semua kontribusi sangat dihargai!
+
+---
+
+## 8. Lisensi
+
+Aplikasi ini menggunakan lisensi **MIT**. Anda bebas untuk menggunakan, memodifikasi, dan mendistribusikan aplikasi ini dengan syarat dan ketentuan yang berlaku.
+
+---
+
+### **Terima kasih telah menggunakan aplikasi ini!**
